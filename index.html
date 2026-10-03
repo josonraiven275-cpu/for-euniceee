@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Eunice</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    background: linear-gradient(135deg, #ffd6a5, #ffb86c, #ff8c69); 
+    color: #4a3040;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.screen {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 20px;
+}
+
+.intro-card,
+.final-card,
+.secret-card {
+    width: 100%;
+    max-width: 650px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.82);
+    padding: 55px 35px;
+    border-radius: 25px;
+    box-shadow: 0 15px 45px rgba(100, 60, 90, 0.15);
+    backdrop-filter: blur(10px);
+}
+
+.intro-card h1 {
+    font-size: 42px;
+    margin-bottom: 20px;
+}
+
+.intro-card p,
+.final-card p,
+.secret-card p {
+    font-size: 19px;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+button {
+    border: none;
+    padding: 14px 25px;
+    border-radius: 30px;
+    background: #f28c28;
+    color: white;
+    font-size: 16px;
+    font-family: inherit;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    transform: scale(1.05);
+    background: #d97706;
+}
+
+#letter {
+    display: none;
+    min-height: 100vh;
+    padding: 60px 20px;
+}
+
+.letter-card {
+    max-width: 800px;
+    margin: auto;
+    background: rgba(255, 255, 255, 0.88);
+    padding: 50px 45px;
+    border-radius: 25px;
+    box-shadow: 0 15px 45px rgba(100, 60, 90, 0.15);
+}
+
+.letter-card h2 {
+    text-align: center;
+    font-size: 34px;
+    margin-bottom: 40px;
+}
+
+.letter-content p {
+    font-size: 18px;
+    line-height: 1.9;
+    margin-bottom: 28px;
+}
+
+.typed-paragraph {
+    min-height: 10px;
+}
+
+.question {
+    opacity: 0;
+    text-align: center;
+    font-size: 25px !important;
+    font-weight: bold;
+    margin: 45px 0 !important;
+}
+
+.signature {
+    opacity: 0;
+    text-align: right;
+    font-size: 18px;
+    line-height: 1.8;
+    margin-top: 35px;
+}
+
+.letter-button {
+    opacity: 0;
+    text-align: center;
+    margin-top: 45px;
+}
+
+#final,
+#secret {
+    display: none;
+}
+
+.final-card h2,
+.secret-card h2 {
+    font-size: 35px;
+    margin-bottom: 20px;
+}
+
+.secret-card h2 {
+    animation: heartbeat 1.5s infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.06);
+    }
+}
+
+.floating-heart {
+    position: fixed;
+    bottom: -30px;
+    pointer-events: none;
+    animation: floatUp linear forwards;
+    z-index: 999;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+    to {
+        transform: translateY(-110vh);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 600px) {
+    .intro-card,
+    .final-card,
+    .secret-card {
+        padding: 40px 25px;
+    }
+
+    .intro-card h1 {
+        font-size: 32px;
+    }
+
+    .letter-card {
+        padding: 35px 25px;
+    }
+
+    .letter-card h2 {
+        font-size: 29px;
+    }
+
+    .letter-content p {
+        font-size: 17px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<section id="intro" class="screen">
+    <div class="intro-card">
+        <h1>for my Disney Princess</h1>
+        <p>I made something for you.</p>
+        <button onclick="openLetter()">Open My Letter 💌</button>
+    </div>
+</section>
+
+<section id="letter">
+    <div class="letter-card">
+        <h2>Dear Eunice</h2>
+
+        <div class="letter-content">
+
+            <p class="typed-paragraph" id="p1"></p>
+            <p class="typed-paragraph" id="p2"></p>
+            <p class="typed-paragraph" id="p3"></p>
+            <p class="typed-paragraph" id="p4"></p>
+            <p class="typed-paragraph" id="p5"></p>
+            <p class="typed-paragraph" id="p6"></p>
+            <p class="typed-paragraph" id="p7"></p>
+            <p class="typed-paragraph" id="p8"></p>
+
+            <p class="question" id="question">
+                Would you let me court you?
+            </p>
+
+            <p class="typed-paragraph" id="p10"></p>
+
+            <div class="signature" id="signature">
+                With all my sincerity and affection,<br>
+                <strong>Raiven</strong>
+            </div>
+
+            <div class="letter-button" id="letterButton">
+                <button onclick="showFinal()">There's One More Thing...</button>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<section id="final" class="screen">
+    <div class="final-card">
+        <h2>There's One More Thing...</h2>
+        <p>I made one last little thing for you.</p>
+        <button onclick="showSecret()">Open it</button>
+    </div>
+</section>
+
+<section id="secret" class="screen">
+    <div class="secret-card">
+        <h2>I really, really love you.</h2>
+        <p>Thank you for coming into my life and making it a more colorful.</p>
+        <p>Whatever happens, I'm glad I met you.</p>
+        <p>- Raiven</p>
+    </div>
+</section>
+
+<script>
+
+const paragraphs = [
+    `   Hello!! Since we both know that I'm deeply attached to you na and I'm sure about my feelings na for you, I wanna make it clear for both of us. I'd like to ask for your permission for me to start courting you.`,
+
+    `   I really love the way you interact with me, the way you laugh, the way you speak. I love everything about you. I want you to be the one for me, and I would love to be the one to grow old with you.`,
+
+    `   Ever since I met you, things have changed. I'm no longer the same as I was before. The way I see everything as plain became colorful, like I'm in a different world from how I was before. I'm really grateful that I met you, someone who's been my motivation lately.`,
+
+    `   I love how comfortable I feel whenever I'm talking to you. Even the simplest conversations with you can make my day better. I love how our humor matches, how we can laugh at the most random things, and how I can be myself around you without feeling like I have to pretend to be someone else.`,
+
+    `   I also appreciate how caring you are. There are little things you do that might seem simple to you, but they mean a lot to me. The more I get to know you, the more I find myself wanting to know you even more.`,
+
+    `   I don't want to rush you or force you into anything. I just want to be honest about what I feel and let you know that my intentions toward you are genuine. If you allow me to court you, I want to take the time to know you better, understand you, support you, and show you through my actions how much you mean to me.`,
+
+    `   I know we still have a lot to learn about each other, and I don't expect everything to be perfect. I just want the chance to continue building something meaningful with you, one step at a time.`,
+
+    `   So, with all that I've said, I want to ask you properly.`,
+
+    `   Would you let me court you?`,
+
+    `   Whatever your answer is, I want you to know that I'm grateful that you came into my life. Meeting you is something I'll always be thankful for, and I'm really happy that I got the chance to know someone as special as you.`
+];
+
+
+function openLetter() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("letter").style.display = "block";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+
+    startTyping();
+}
+
+
+async function typeText(element, text, speed) {
+
+    for (let i = 0; i < text.length; i++) {
+
+        element.textContent += text.charAt(i);
+
+        await new Promise(resolve =>
+            setTimeout(resolve, speed)
+        );
+    }
+}
+
+
+async function startTyping() {
+
+    const speed = 22;
+
+    for (let i = 0; i < 8; i++) {
+
+        const element =
+            document.getElementById("p" + (i + 1));
+
+        await typeText(
+            element,
+            paragraphs[i],
+            speed
+        );
+
+        await new Promise(resolve =>
+            setTimeout(resolve, 500)
+        );
+
+        element.scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+        });
+    }
+
+    const question =
+        document.getElementById("question");
+
+    question.style.opacity = "1";
+
+    question.scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+
+    await new Promise(resolve =>
+        setTimeout(resolve, 1200)
+    );
+
+    const finalParagraph =
+        document.getElementById("p10");
+
+    await typeText(
+        finalParagraph,
+        paragraphs[9],
+        speed
+    );
+
+    await new Promise(resolve =>
+        setTimeout(resolve, 500)
+    );
+
+    document.getElementById("signature").style.opacity = "1";
+
+    await new Promise(resolve =>
+        setTimeout(resolve, 1000)
+    );
+
+    document.getElementById("letterButton").style.opacity = "1";
+
+    document.getElementById("letterButton").scrollIntoView({
+        behavior: "smooth",
+        block: "center"
+    });
+}
+
+
+function showFinal() {
+
+    document.getElementById("letter").style.display = "none";
+    document.getElementById("final").style.display = "flex";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+function showSecret() {
+
+    document.getElementById("final").style.display = "none";
+    document.getElementById("secret").style.display = "flex";
+
+    window.scrollTo({
+        top: 0,
+        behavior: "smooth"
+    });
+}
+
+
+function createHeart() {
+
+    const heart = document.createElement("div");
+
+    heart.classList.add("floating-heart");
+
+    heart.innerHTML = "❤️";
+
+    heart.style.left =
+        Math.random() * 100 + "vw";
+
+    heart.style.fontSize =
+        Math.random() * 15 + 15 + "px";
+
+    heart.style.animationDuration =
+        Math.random() * 3 + 4 + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 7000);
+}
+
+
+setInterval(createHeart, 800);
+
+</script>
+
+</body>
+</html>
